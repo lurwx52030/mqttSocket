@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+	<PropertyGroup>
+		<PublishDirName>dist</PublishDirName>
+		<PublishDir>$(ProjectDir)bin\Publish\dist</PublishDir>
+	</PropertyGroup>
+	
+	<Target Name="CompressFiles" AfterTargets="Publish">
+		<Message Text="6" Importance="High" />
+		<Message Text="generating zip file of dist......" Importance="High" />
+		<!-- Requires: powershell environment -->
+		<Exec Command="powershell Compress-Archive -Force $(PublishDir)* $(PublishDirName).zip" />
+	</Target>
+
+	<ItemGroup>
+		<CompilerVisibleProperty Include="RootNamespace" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.13" />
+    <PackageReference Include="MQTTnet.AspNetCore" Version="4.3.1.873" />
+    <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="4.3.1.873" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+</Project>
