@@ -27,7 +27,7 @@ namespace mqttSocket.Controllers
             mqttClient = GetMqttClient();
             var mqttClientConnectOption = new MqttClientOptionsBuilder()
                                                 .WithClientId("websocketServer")
-                                                .WithTcpServer("localhost", 1883)
+                                                .WithTcpServer("127.0.0.1", 1883)
                                                 .Build();
 
             mqttClient.ConnectAsync(mqttClientConnectOption).Wait();
